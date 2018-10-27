@@ -1,6 +1,9 @@
 package com.jdbc.ws.rest;
 
+import java.rmi.RemoteException;
 import java.util.List;
+
+import javax.xml.rpc.ServiceException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jdbc.ws.entity.ProdutoEntity;
 import com.jdbc.ws.service.IProdutoService;
+
+import br.com.correios.bsb.sigep.master.bean.cliente.AtendeClienteProxy;
+import br.com.correios.bsb.sigep.master.bean.cliente.AtendeClienteServiceLocator;
+import br.com.correios.bsb.sigep.master.bean.cliente.EnderecoERP;
+import br.com.correios.bsb.sigep.master.bean.cliente.SQLException;
+import br.com.correios.bsb.sigep.master.bean.cliente.SigepClienteException;
 
 @RestController
 @RequestMapping("api/rest/produto")
