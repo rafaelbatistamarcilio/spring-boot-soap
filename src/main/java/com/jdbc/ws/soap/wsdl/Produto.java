@@ -2,12 +2,13 @@
 // Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.7 
 // Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2018.10.25 às 11:31:09 PM BRT 
+// Gerado em: 2018.10.27 às 01:10:28 PM BRT 
 //
 
 
 package com.jdbc.ws.soap.wsdl;
 
+import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -24,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="descricao" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="preco" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *         &lt;element name="preco" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,16 +44,17 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Produto {
 
-    protected int id;
+    protected long id;
     @XmlElement(required = true)
     protected String descricao;
-    protected double preco;
+    @XmlElement(required = true)
+    protected BigDecimal preco;
 
     /**
      * Obtém o valor da propriedade id.
      * 
      */
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -60,7 +62,7 @@ public class Produto {
      * Define o valor da propriedade id.
      * 
      */
-    public void setId(int value) {
+    public void setId(long value) {
         this.id = value;
     }
 
@@ -91,16 +93,24 @@ public class Produto {
     /**
      * Obtém o valor da propriedade preco.
      * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
      */
-    public double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
     /**
      * Define o valor da propriedade preco.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
      */
-    public void setPreco(double value) {
+    public void setPreco(BigDecimal value) {
         this.preco = value;
     }
 

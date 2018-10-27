@@ -2,7 +2,7 @@
 // Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.7 
 // Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2018.10.25 às 11:31:09 PM BRT 
+// Gerado em: 2018.10.27 às 01:10:28 PM BRT 
 //
 
 
@@ -37,35 +37,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RecuperarProdutoPorIdRequest }
+     * Create an instance of {@link GetProdutosResponse }
      * 
      */
-    public RecuperarProdutoPorIdRequest createRecuperarProdutoPorIdRequest() {
-        return new RecuperarProdutoPorIdRequest();
-    }
-
-    /**
-     * Create an instance of {@link ExcluirProdutoResponse }
-     * 
-     */
-    public ExcluirProdutoResponse createExcluirProdutoResponse() {
-        return new ExcluirProdutoResponse();
-    }
-
-    /**
-     * Create an instance of {@link ExcluirProdutoRequest }
-     * 
-     */
-    public ExcluirProdutoRequest createExcluirProdutoRequest() {
-        return new ExcluirProdutoRequest();
-    }
-
-    /**
-     * Create an instance of {@link RecuperarProdutoPorIdResponse }
-     * 
-     */
-    public RecuperarProdutoPorIdResponse createRecuperarProdutoPorIdResponse() {
-        return new RecuperarProdutoPorIdResponse();
+    public GetProdutosResponse createGetProdutosResponse() {
+        return new GetProdutosResponse();
     }
 
     /**
@@ -77,19 +53,75 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RecuperarProdutosResponse }
+     * Create an instance of {@link UpdateProdutoResponse }
      * 
      */
-    public RecuperarProdutosResponse createRecuperarProdutosResponse() {
-        return new RecuperarProdutosResponse();
+    public UpdateProdutoResponse createUpdateProdutoResponse() {
+        return new UpdateProdutoResponse();
     }
 
     /**
-     * Create an instance of {@link RecuperarProdutosRequest }
+     * Create an instance of {@link GetProdutoResponse }
      * 
      */
-    public RecuperarProdutosRequest createRecuperarProdutosRequest() {
-        return new RecuperarProdutosRequest();
+    public GetProdutoResponse createGetProdutoResponse() {
+        return new GetProdutoResponse();
+    }
+
+    /**
+     * Create an instance of {@link AddProdutoRequest }
+     * 
+     */
+    public AddProdutoRequest createAddProdutoRequest() {
+        return new AddProdutoRequest();
+    }
+
+    /**
+     * Create an instance of {@link AddProdutoResponse }
+     * 
+     */
+    public AddProdutoResponse createAddProdutoResponse() {
+        return new AddProdutoResponse();
+    }
+
+    /**
+     * Create an instance of {@link UpdateProdutoRequest }
+     * 
+     */
+    public UpdateProdutoRequest createUpdateProdutoRequest() {
+        return new UpdateProdutoRequest();
+    }
+
+    /**
+     * Create an instance of {@link DeleteProdutoRequest }
+     * 
+     */
+    public DeleteProdutoRequest createDeleteProdutoRequest() {
+        return new DeleteProdutoRequest();
+    }
+
+    /**
+     * Create an instance of {@link DeleteProdutoResponse }
+     * 
+     */
+    public DeleteProdutoResponse createDeleteProdutoResponse() {
+        return new DeleteProdutoResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetProdutoRequest }
+     * 
+     */
+    public GetProdutoRequest createGetProdutoRequest() {
+        return new GetProdutoRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetProdutosRequest }
+     * 
+     */
+    public GetProdutosRequest createGetProdutosRequest() {
+        return new GetProdutosRequest();
     }
 
 }

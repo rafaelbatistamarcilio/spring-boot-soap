@@ -2,11 +2,28 @@ package com.jdbc.ws.entity;
 
 import java.math.BigDecimal;
 
-public class ProdutoEntity {
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-	private Long id;
-	private String descricao;
-	private BigDecimal preco;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "produto", propOrder = {
+	    "id",
+	    "descricao",
+	    "preco"
+	})
+@XmlRootElement(name = "produto")
+public class ProdutoEntity {
+	
+	@XmlElement(name = "id")
+	public Long id;
+	@XmlElement(name = "descricao")
+	public String descricao;
+	@XmlElement(name = "preco")
+	public BigDecimal preco;
 	
 	
 	

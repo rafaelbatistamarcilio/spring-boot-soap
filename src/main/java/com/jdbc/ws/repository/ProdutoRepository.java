@@ -28,7 +28,7 @@ public class ProdutoRepository implements IProdutoRepository{
 	public ProdutoEntity salvar(ProdutoEntity produto) {
 
 		try {
-			Long proximoId = jdbcTemplate.queryForObject("SELECT NEXTVAL('ESTOQUE_PRODUTO_SEQ')", Long.class);
+			Long proximoId = jdbcTemplate.queryForObject("SELECT NEXTVAL('\"ESTOQUE\".\"PRODUTO_SEQ\"')", Long.class);
 			
 			StringBuilder insert = new StringBuilder();
 			insert.append("INSERT INTO \"ESTOQUE\".\"PRODUTO\" ");

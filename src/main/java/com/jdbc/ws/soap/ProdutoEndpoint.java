@@ -11,9 +11,16 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.jdbc.ws.entity.ProdutoEntity;
 import com.jdbc.ws.service.IProdutoService;
+import com.jdbc.ws.soap.wsdl.AddProdutoRequest;
+import com.jdbc.ws.soap.wsdl.AddProdutoResponse;
+import com.jdbc.ws.soap.wsdl.DeleteProdutoRequest;
+import com.jdbc.ws.soap.wsdl.DeleteProdutoResponse;
+import com.jdbc.ws.soap.wsdl.GetProdutoRequest;
+import com.jdbc.ws.soap.wsdl.GetProdutoResponse;
+import com.jdbc.ws.soap.wsdl.GetProdutosRequest;
+import com.jdbc.ws.soap.wsdl.GetProdutosResponse;
 import com.jdbc.ws.soap.wsdl.Produto;
-import com.jdbc.ws.soap.wsdl.RecuperarProdutosRequest;
-import com.jdbc.ws.soap.wsdl.RecuperarProdutosResponse;
+import com.jdbc.ws.soap.wsdl.UpdateProdutoRequest;
 
 @Endpoint
 public class ProdutoEndpoint {
@@ -23,24 +30,84 @@ public class ProdutoEndpoint {
 	private IProdutoService produtoService;
 
 	@ResponsePayload
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "recuperarProdutosRequest")
-	public RecuperarProdutosResponse getCountry(@RequestPayload RecuperarProdutosRequest request) {
-		RecuperarProdutosResponse response = new RecuperarProdutosResponse();
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteProdutoRequest")
+	public DeleteProdutoResponse excluir(@RequestPayload DeleteProdutoRequest request) {
+		
+		produtoService.excluir( request.getId() );		
+		DeleteProdutoResponse response = new DeleteProdutoResponse();
+		response.setResposta("Produto id: " + request.getId() + " excluirdo com sucesso");
+		return response;
+	}
 
+	@ResponsePayload
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateProdutoRequest")
+	public UpdateProdutoRequest atualizar(@RequestPayload UpdateProdutoRequest request) {
+		ProdutoEntity novoProduto = new ProdutoEntity();
+		novoProduto.setId(request.getProduto().getId());
+		novoProduto.setDescricao(request.getProduto().getDescricao());
+		novoProduto.setPreco(request.getProduto().getPreco());
+		
+		ProdutoEntity produtoCadastrado = produtoService.editar( novoProduto.getId(),novoProduto );
+		Produto produto = new Produto();
+		produto.setId(produtoCadastrado.getId());
+		produto.setDescricao(produtoCadastrado.getDescricao());
+		produto.setPreco(produtoCadastrado.getPreco());
+		
+		UpdateProdutoRequest response = new UpdateProdutoRequest();
+		response.setProduto(produto);
+		return response;
+	}
+
+	@ResponsePayload
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "addProdutoRequest")
+	public AddProdutoResponse adicionar(@RequestPayload AddProdutoRequest request) {
+		ProdutoEntity novoProduto = new ProdutoEntity();
+		novoProduto.setDescricao(request.getProduto().getDescricao());
+		novoProduto.setPreco(request.getProduto().getPreco());
+		
+		ProdutoEntity produtoCadastrado = produtoService.salvar( novoProduto );
+		Produto produto = new Produto();
+		produto.setId(produtoCadastrado.getId());
+		produto.setDescricao(produtoCadastrado.getDescricao());
+		produto.setPreco(produtoCadastrado.getPreco());
+		
+		AddProdutoResponse response = new AddProdutoResponse();
+		response.setProduto(produto);
+		return response;
+		
+	}
+
+	@ResponsePayload
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProdutosRequest")
+	public GetProdutosResponse recuperarTodos(@RequestPayload GetProdutosRequest request) {
 		List<ProdutoEntity> produtos = produtoService.recuperarTodos();
-		ArrayList<Produto> produtosResponse = new ArrayList<Produto>();
-		int limite = request.getLimite();
+		List<Produto> produtosResponse = new ArrayList<>();
 		
-		for (int itens = 0; itens< limite; itens++) {
-			ProdutoEntity produto = produtos.get(itens);
-			Produto produtoResponse = new Produto();
-			produtoResponse.setId( produto.getId().intValue() );
-			produtoResponse.setDescricao( produto.getDescricao() );
-			produtoResponse.setPreco( produto.getPreco().doubleValue() );
-			produtosResponse.add(produtoResponse);
+		for (ProdutoEntity produtoEntity : produtos) {
+			Produto produto = new Produto();
+			produto.setId(produtoEntity.getId());
+			produto.setDescricao(produtoEntity.getDescricao());
+			produto.setPreco(produtoEntity.getPreco());
+			produtosResponse.add(produto);
 		}
+		GetProdutosResponse produtosXml = new GetProdutosResponse();
+		produtosXml.getProdutos().addAll(produtosResponse);
+		return produtosXml;
 		
-		response.produtos = produtosResponse ;
+	}
+
+	@ResponsePayload
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProdutoRequest")
+	public GetProdutoResponse recuperarPorId(@RequestPayload GetProdutoRequest request) {
+		ProdutoEntity produto = produtoService.recuperarPorId(request.getId());
+		
+		Produto produtoResponse = new Produto();
+		produtoResponse.setId( produto.getId() );
+		produtoResponse.setDescricao(produto.getDescricao());
+		produtoResponse.setPreco( produto.getPreco());
+		
+		GetProdutoResponse response = new GetProdutoResponse();
+		response.setProduto(produtoResponse);
 		return response;
 	}
 }

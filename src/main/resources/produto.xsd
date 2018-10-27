@@ -3,63 +3,92 @@
 	targetNamespace="http://wsdl.soap.ws.jdbc.com"
 	elementFormDefault="qualified">
 
-	<xs:element name="recuperarProdutoPorIdRequest">
+	<xs:element name="addProdutoRequest">
 		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="id" type="xs:int" />
-			</xs:sequence>
+		     <xs:sequence>
+		      <xs:element name="produto" type="tns:produto" />
+		     </xs:sequence>
 		</xs:complexType>
-	</xs:element>
-
-	<xs:element name="recuperarProdutoPorIdResponse">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="produto" type="tns:produto" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-
-	<xs:element name="recuperarProdutosRequest">
-		<xs:complexType>
-				 <xs:sequence>
-					<xs:element name="limite" type="xs:int" />
-				</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-
-	<xs:element name="recuperarProdutosResponse">
-		<xs:complexType>
-			<xs:sequence>			
-					<xs:element name="produtos" type="tns:produto" minOccurs="0" maxOccurs="unbounded" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element> 
-
-	<xs:element name="excluirProdutoRequest">
-		<xs:complexType>
-			<xs:sequence>
-				 <xs:sequence>
-					<xs:element name="mesagem" type="xs:string" />
-				</xs:sequence>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-
-	<xs:element name="excluirProdutoResponse">
-		<xs:complexType>
-			<xs:sequence>
-				 <xs:sequence>
-					<xs:element name="mesagem" type="xs:string" />
-				</xs:sequence>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-
-	<xs:complexType name="produto">
-		<xs:sequence>
-			<xs:element name="id" type="xs:int" />
-			<xs:element name="descricao" type="xs:string" />
-			<xs:element name="preco" type="xs:double" />
-		</xs:sequence>
+  	</xs:element>  
+ 
+  <xs:element name="addProdutoResponse">
+	<xs:complexType>
+	     <xs:sequence>
+		      <xs:element name="produto" type="tns:produto" />
+	     </xs:sequence>
 	</xs:complexType>
+  </xs:element>
+
+	<xs:element name="updateProdutoRequest">
+		<xs:complexType>
+		     <xs:sequence>
+		      <xs:element name="produto" type="tns:produto" />
+		     </xs:sequence>
+		</xs:complexType>
+  	</xs:element>  
+ 
+  <xs:element name="updateProdutoResponse">
+	<xs:complexType>
+	     <xs:sequence>
+		      <xs:element name="produto" type="tns:produto" />
+	     </xs:sequence>
+	</xs:complexType>
+  </xs:element>
+ 
+  <xs:element name="deleteProdutoRequest">
+	<xs:complexType>
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" />
+    </xs:sequence>
+	</xs:complexType>
+  </xs:element>  
+
+  <xs:element name="deleteProdutoResponse">
+	<xs:complexType>
+     <xs:sequence>
+      <xs:element name="resposta" type="xs:string" />
+     </xs:sequence>
+	</xs:complexType>
+  </xs:element>	
+
+	<xs:element name="getProdutosRequest">
+		<xs:complexType>
+		     <xs:sequence>
+		      <xs:element name="limite" type="xs:long" />
+		     </xs:sequence>
+		</xs:complexType>
+  	</xs:element>  
+ 
+  <xs:element name="getProdutosResponse">
+	<xs:complexType>
+	     <xs:sequence>
+	      <xs:element name="produtos" type="tns:produto" minOccurs="0"  maxOccurs="unbounded"/>
+	     </xs:sequence>
+	</xs:complexType>
+  </xs:element>
+ 
+  <xs:element name="getProdutoRequest">
+	<xs:complexType>
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" />
+    </xs:sequence>
+	</xs:complexType>
+  </xs:element>  
+
+  <xs:element name="getProdutoResponse">
+	<xs:complexType>
+     <xs:sequence>
+      <xs:element name="produto" type="tns:produto" />
+     </xs:sequence>
+	</xs:complexType>
+  </xs:element>	
+
+  <xs:complexType name="produto">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" />
+      <xs:element name="descricao" type="xs:string"/>
+      <xs:element name="preco" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+	
 </xs:schema>
